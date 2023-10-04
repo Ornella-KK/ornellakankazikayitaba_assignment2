@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>AdmissionAppAssignmnt</display-name>
+  <welcome-file-list>
+    <welcome-file>signUp.html</welcome-file>
+   <!--<welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>-->
+  </welcome-file-list>
+  
+  <servlet>
+  	<servlet-name>signUp</servlet-name>
+  	<servlet-class>com.auca.service.SignUpServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>signUp</servlet-name>
+  	<url-pattern>/signUp</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>admission</servlet-name>
+  	<servlet-class>com.auca.service.AdmissionServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>admission</servlet-name>
+  	<url-pattern>/admission</url-pattern>
+  </servlet-mapping>
+  
+  <filter>
+    <filter-name>AuthFilters</filter-name>
+    <filter-class>com.auca.service.AuthFilters</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>AuthFilters</filter-name>
+    <url-pattern>/admission.html</url-pattern>
+</filter-mapping>
+  
+</web-app>

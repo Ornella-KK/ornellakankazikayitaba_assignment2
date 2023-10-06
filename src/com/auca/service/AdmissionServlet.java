@@ -1,7 +1,9 @@
 package com.auca.service;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Properties;
+import java.util.ResourceBundle;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -21,11 +23,19 @@ public class AdmissionServlet extends HttpServlet{
         // Process admission form data
         String userName = (String) request.getSession().getAttribute("userName");
 
+        System.out.println(userName);
         // Send confirmation email
         sendConfirmationEmail(userName);
 
         // Redirect to a confirmation page
         response.sendRedirect("welcome.html");
+        
+        ResourceBundle messages = ResourceBundle.getBundle("messages", new Locale("en")); // Default to English
+        String userLanguage = (String) request.getSession().getAttribute("userLanguage");
+        if (userLanguage != null) {
+            messages = ResourceBundle.getBundle("messages", new Locale(userLanguage));
+        }
+
     }
 
     private void sendConfirmationEmail(String recipientEmail) {
@@ -39,7 +49,7 @@ public class AdmissionServlet extends HttpServlet{
 
         // sender email credentials
         String username = "techornell@gmail.com";
-        String password = "ornell@123";
+        String password = "hieo oqyj ltfj drdm";
 
         // Create session with authentication
         Session session = Session.getInstance(properties, new Authenticator() {

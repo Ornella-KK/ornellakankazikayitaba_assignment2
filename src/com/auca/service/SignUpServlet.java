@@ -2,6 +2,8 @@ package com.auca.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +15,19 @@ public class SignUpServlet extends HttpServlet{
 
     public void service(HttpServletRequest request, HttpServletResponse response) {
         String newPassword = request.getParameter("newPassword");
+        
+        ResourceBundle messages = ResourceBundle.getBundle("messages", new Locale("en")); // Default to English
+        String userLanguage = request.getParameter("selectedLanguage"); // Get user's language preference (e.g., "fr" for French)
+        
+        if (userLanguage != null) {
+            // Store the selected language in session or cookies for future visits
+            request.getSession().setAttribute("userLanguage", userLanguage);
+        }
+
+        if (userLanguage != null) {
+            messages = ResourceBundle.getBundle("messages", new Locale(userLanguage));
+        }
+
 
         if (newPassword != null) {
             // Password reset logic
